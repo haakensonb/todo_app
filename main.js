@@ -17,6 +17,11 @@ var todoApp = {
     }*/
     //show as array of objects
     console.log(this.tasks);
+    var taskListEl = document.querySelector('.task-list');
+    taskListEl.innerHTML = "";
+    for (var i = 0; i < this.tasks.length; i++){
+      taskListEl.insertAdjacentHTML('beforeend', '<li class="task">' + this.tasks[i].name + '</li>');
+    }
   },
   toggleCompleted: function (obj) {
     if(this.tasks[obj].completed === false){
@@ -38,11 +43,13 @@ function Task (name) {
 //document ready
 document.addEventListener('DOMContentLoaded', function(){
   //run when enter key is pressed on input
-  document.querySelector('.new-task').addEventListener('keyup', function(e){
+  var newTaskEl = document.querySelector('.new-task');
+  newTaskEl.addEventListener('keyup', function(e){
     if (e.keyCode == 13){
-      alert('omfg');
+      todoApp.addTask(newTaskEl.value);
+      newTaskEl.value = '';
     }
   })
 
-  document.querySelector('.new-task').insertAdjacentHTML('afterend', '<ul class="task-list"></ul>');
+
 });
