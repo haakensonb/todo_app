@@ -11,17 +11,13 @@ var todoApp = {
     this.showTasks();
   },
   showTasks: function() {
-    /* show the name of each task
-    for (var i = 0; i < this.tasks.length; i++){
-      console.log(this.tasks[i].name);
-    }*/
-    //show as array of objects
-    console.log(this.tasks);
     var taskListEl = document.querySelector('.task-list');
     taskListEl.innerHTML = "";
     for (var i = 0; i < this.tasks.length; i++){
       taskListEl.insertAdjacentHTML('beforeend', '<li class="task">' + this.tasks[i].name + '</li>');
     }
+    //add click events after li are shown
+    this.addClickEvents();
   },
   toggleCompleted: function (obj) {
     if(this.tasks[obj].completed === false){
@@ -30,6 +26,22 @@ var todoApp = {
       this.tasks[obj].completed = false;
     }
     this.showTasks();
+  },
+  addClickEvents: function () {
+    var taskEl = document.querySelectorAll('.task');
+    for (var i = 0; i < taskEl.length; i++){
+      taskEl[i].addEventListener('click', myEvent);
+    }
+    function myEvent () {
+      //get text from li clicked
+      var myTarget = event.target.innerHTML;
+      //loop through tasks and if the name matches the li then toggleCompleted on that Task
+      for (var i = 0; i < taskEl.length; i++){
+        if (todoApp.tasks[i].name == myTarget){
+          todoApp.toggleCompleted(i);
+        }
+      }
+    }
   }
 };
 
@@ -50,6 +62,5 @@ document.addEventListener('DOMContentLoaded', function(){
       newTaskEl.value = '';
     }
   })
-
 
 });
