@@ -37,5 +37,12 @@ function Task (name) {
 
 //document ready
 document.addEventListener('DOMContentLoaded', function(){
+  //run when enter key is pressed on input
+  document.querySelector('.new-task').addEventListener('keyup', function(e){
+    if (e.keyCode == 13){
+      alert('omfg');
+    }
+  })
 
+  document.querySelector('.new-task').insertAdjacentHTML('afterend', '<ul class="task-list"></ul>');
 });
