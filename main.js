@@ -25,7 +25,7 @@ var todoApp = {
     } else if (this.tasks[obj].completed === true) {
       this.tasks[obj].completed = false;
     }
-    this.showTasks();
+    event.target.classList.toggle('complete');
   },
   addClickEvents: function () {
     var taskEl = document.querySelectorAll('.task');
