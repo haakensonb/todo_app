@@ -18,7 +18,12 @@ var todoApp = {
     var taskListEl = document.querySelector('.task-list');
     taskListEl.innerHTML = "";
     for (var i = 0; i < this.tasks.length; i++){
-      taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li>' + this.tasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+      //if completed render with css class to visualize, otherwise render without class
+      if(this.tasks[i].completed === true){
+        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li class="complete">' + this.tasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+      } else {
+        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li>' + this.tasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+      }
     }
     //add click events after li are shown
     this.addDeleteEvents();
@@ -63,6 +68,37 @@ var todoApp = {
       var text = parent.firstChild.innerHTML;
       todoApp.removeTask(text);
     }
+  },
+  clearCompleted: function () {
+    for (var i = 0; i < this.tasks.length; i++){
+      if (this.tasks[i].completed === true){
+        this.tasks.splice(i, 1);
+      }
+    }
+    this.showTasks();
+  },
+  //showActive and showCompleted are repetitive, needs refactoring
+  showActive: function () {
+    var taskListEl = document.querySelector('.task-list');
+    taskListEl.innerHTML = "";
+    for (var i = 0; i < this.tasks.length; i++){
+      if(this.tasks[i].completed === false){
+        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li>' + this.tasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+      }
+    }
+    this.addDeleteEvents();
+    this.addClickEvents();
+  },
+  showCompleted: function () {
+    var taskListEl = document.querySelector('.task-list');
+    taskListEl.innerHTML = "";
+    for (var i = 0; i < this.tasks.length; i++){
+      if(this.tasks[i].completed === true){
+        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li class="complete">' + this.tasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+      }
+    }
+    this.addDeleteEvents();
+    this.addClickEvents();
   }
 };
 
@@ -82,6 +118,26 @@ document.addEventListener('DOMContentLoaded', function(){
       todoApp.addTask(newTaskEl.value);
       newTaskEl.value = '';
     }
+  });
+
+  var clearBtn = document.querySelector('#clear-btn');
+  clearBtn.addEventListener('click', function () {
+    todoApp.clearCompleted();
+  });
+
+  var allFilter = document.querySelector('#all');
+  allFilter.addEventListener('click', function () {
+    todoApp.showTasks();
+  });
+
+  var activeFilter = document.querySelector('#active');
+  activeFilter.addEventListener('click', function () {
+    todoApp.showActive();
+  });
+
+  var completedFilter = document.querySelector('#completed');
+  completedFilter.addEventListener('click', function () {
+    todoApp.showCompleted();
   });
 
 });
