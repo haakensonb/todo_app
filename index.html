@@ -9,7 +9,20 @@
 
     <div id="todoApp">
       <h1>Todo</h1>
-      <input class="new-task" placeholder="Add a new task.."/>
+        <div>
+          <ul class="filters">
+            <li>
+              <a id="all" href="#">All</a>
+              <a id="active" href="#">Active</a>
+              <a id="completed" href="#">Completed</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <input class="new-task" placeholder="Add a new task.."/>
+          <button id="clear-btn">Clear Completed</button>
+        </div>
+
       <ul class="task-list">
 
       </ul>
