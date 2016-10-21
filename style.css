@@ -12,3 +12,6 @@
 .task:hover .close{
     visibility: visible;
 }
+.filters {
+  display: inline;
+}
