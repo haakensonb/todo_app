@@ -1,5 +1,4 @@
 Todo:
-  Add click listener to li to toggle completion(shown with red line through?)
   Add content: X to li and tie to removeTask
   Add clear completed button
   Add Tabs for All/Active/Completed?
