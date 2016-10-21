@@ -1,3 +1,14 @@
 .complete {
   background-color: green;
 }
+.task > li{
+  display: inline;
+}
+.close {
+  margin-left: 10px;
+  display: inline;
+  visibility: hidden;
+}
+.task:hover .close{
+    visibility: visible;
+}
