@@ -1,5 +1,4 @@
 Todo:
-  Add content: X to li and tie to removeTask
   Add clear completed button
   Add Tabs for All/Active/Completed?
   Check make sure task isn't whitespace/strip whitespace
