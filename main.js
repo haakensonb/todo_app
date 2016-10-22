@@ -1,3 +1,5 @@
+//get tasks from previous session
+var storedTasks = JSON.parse(localStorage.getItem('tasks'));
 //todo Object
 var todoApp = {
   tasks: [],
@@ -28,6 +30,7 @@ var todoApp = {
     //add click events after li are shown
     this.addDeleteEvents();
     this.addClickEvents();
+    localStorage.setItem('tasks', JSON.stringify(todoApp.tasks));
   },
   toggleCompleted: function (obj) {
     if(this.tasks[obj].completed === false){
@@ -99,6 +102,20 @@ var todoApp = {
     }
     this.addDeleteEvents();
     this.addClickEvents();
+  },
+  showStored: function () {
+    var taskListEl = document.querySelector('.task-list');
+    taskListEl.innerHTML = "";
+    for (var i = 0; i < storedTasks.length; i++){
+      //if completed render with css class to visualize, otherwise render without class
+      if(storedTasks[i].completed === true){
+        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li class="complete">' + storedTasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+      } else {
+        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li>' + storedTasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+      }
+    }
+    this.addDeleteEvents();
+    this.addClickEvents();
   }
 };
 
@@ -111,6 +128,11 @@ function Task (name) {
 
 //document ready
 document.addEventListener('DOMContentLoaded', function(){
+  //check if there were tasks from previus session and use them
+  if (storedTasks !== undefined){
+    todoApp.tasks = storedTasks;
+    todoApp.showStored();
+  }
   //run when enter key is pressed on input
   var newTaskEl = document.querySelector('.new-task');
   newTaskEl.addEventListener('keyup', function(e){
