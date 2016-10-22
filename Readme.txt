@@ -1,4 +1,3 @@
-Todo:
-  Style
+Todo:Refactor and clean up
 
-A simple todo app
+This is a todo app made with plain Javascript. 
