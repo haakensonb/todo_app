@@ -3,12 +3,19 @@
 }
 html, body {
   height: 100%;
+  background-color: #edeeee;
 }
 h1 {
   text-align: center;
+  font-size: 80px;
+  margin: 5px;
 }
 .complete {
-  background-color: green;
+  border-radius: 4px;
+  background-color: rgb(58, 197, 105);
+}
+.complete > a {
+  color: white;
 }
 li{
   display: inline;
@@ -16,7 +23,7 @@ li{
 ul {
   margin: 0px;
   padding: 0px;
-  text-align: center;
+  text-align: left;
 }
 div {
   margin-top:10px;
@@ -30,9 +37,19 @@ div {
 .task:hover .close{
     visibility: visible;
 }
+.close:hover {
+  color: red;
+  cursor:pointer;
+}
+.task {
+  font-size: 22px;
+  cursor:pointer;
+}
+
 .filters {
   width: 100%;
   display: inline-block;
+  text-align: center;
 }
 .filters li {
   margin: 5px;
@@ -40,9 +57,37 @@ div {
 }
 #todoApp {
   width: auto;
+
 }
 .flex-container {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.new-task {
+  height: auto;
+  font-size: 32px;
+  outline: none;
+  border: none;
+  border-bottom: solid 2px;
+  background-color: #edeeee;
+}
+#clear-btn {
+  border: none;
+  border-radius: 4px;
+  background-color: #2b90d9;
+  color: white;
+  outline: none;
+  font-size: 20px;
+  transition: all 60ms ease-in-out;
+  cursor: pointer;
+}
+#clear-btn:hover {
+  transition: all 60ms ease;
+  background-color: rgba(43,144,217, .85);
+}
+a {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
 }
