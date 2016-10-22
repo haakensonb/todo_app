@@ -40,6 +40,7 @@ var todoApp = {
     }
     //toggle css class to show change
     event.target.classList.toggle('complete');
+    localStorage.setItem('tasks', JSON.stringify(todoApp.tasks));
   },
   addClickEvents: function () {
     var taskEl = document.querySelectorAll('.task');
@@ -80,6 +81,9 @@ var todoApp = {
       }
     }
     this.showTasks();
+    document.querySelector('#active').parentElement.classList.remove('complete');
+    document.querySelector('#completed').parentElement.classList.remove('complete');
+    document.querySelector('#all').parentElement.classList.add('complete');
   },
   //showActive and showCompleted are repetitive, needs refactoring
   showActive: function () {
