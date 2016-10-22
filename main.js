@@ -115,7 +115,8 @@ document.addEventListener('DOMContentLoaded', function(){
   var newTaskEl = document.querySelector('.new-task');
   newTaskEl.addEventListener('keyup', function(e){
     if (e.keyCode == 13){
-      todoApp.addTask(newTaskEl.value);
+      var trimTask = newTaskEl.value.trim();
+      todoApp.addTask(trimTask);
       newTaskEl.value = '';
     }
   });
