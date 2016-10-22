@@ -1,8 +1,26 @@
+* {
+  font-family: 'Abel', sans-serif;
+}
+html, body {
+  height: 100%;
+}
+h1 {
+  text-align: center;
+}
 .complete {
   background-color: green;
 }
-.task > li{
+li{
   display: inline;
+}
+ul {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+div {
+  margin-top:10px;
+  margin-bottom: 10px;
 }
 .close {
   margin-left: 10px;
@@ -13,5 +31,18 @@
     visibility: visible;
 }
 .filters {
-  display: inline;
+  width: 100%;
+  display: inline-block;
+}
+.filters li {
+  margin: 5px;
+  padding: 5px;
+}
+#todoApp {
+  width: auto;
+}
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
