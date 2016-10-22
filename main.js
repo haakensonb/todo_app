@@ -22,9 +22,9 @@ var todoApp = {
     for (var i = 0; i < this.tasks.length; i++){
       //if completed render with css class to visualize, otherwise render without class
       if(this.tasks[i].completed === true){
-        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li class="complete">' + this.tasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li class="complete">' + this.tasks[i].name + '</li>' + '<div class="close hidden"><i class="fa fa-times"></i></div>' + '</div>');
       } else {
-        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li>' + this.tasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li>' + this.tasks[i].name + '</li>' + '<div class="close hidden"><i class="fa fa-times"></i></div>' + '</div>');
       }
     }
     //add click events after li are shown
@@ -66,14 +66,15 @@ var todoApp = {
 
     function myDeleteEvent () {
       var target = event.target;
-      var parent = target.parentElement;
+      var parent = target.parentElement.parentElement;
       //access text of list item in front of .close div
       var text = parent.firstChild.innerHTML;
       todoApp.removeTask(text);
     }
   },
   clearCompleted: function () {
-    for (var i = 0; i < this.tasks.length; i++){
+    var i = this.tasks.length;
+    while (i--){
       if (this.tasks[i].completed === true){
         this.tasks.splice(i, 1);
       }
@@ -86,7 +87,7 @@ var todoApp = {
     taskListEl.innerHTML = "";
     for (var i = 0; i < this.tasks.length; i++){
       if(this.tasks[i].completed === false){
-        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li>' + this.tasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li>' + this.tasks[i].name + '</li>' + '<div class="close hidden"><i class="fa fa-times"></i></div>' + '</div>');
       }
     }
     this.addDeleteEvents();
@@ -97,7 +98,7 @@ var todoApp = {
     taskListEl.innerHTML = "";
     for (var i = 0; i < this.tasks.length; i++){
       if(this.tasks[i].completed === true){
-        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li class="complete">' + this.tasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li class="complete">' + this.tasks[i].name + '</li>' + '<div class="close hidden"><i class="fa fa-times"></i></div>' + '</div>');
       }
     }
     this.addDeleteEvents();
@@ -109,13 +110,17 @@ var todoApp = {
     for (var i = 0; i < storedTasks.length; i++){
       //if completed render with css class to visualize, otherwise render without class
       if(storedTasks[i].completed === true){
-        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li class="complete">' + storedTasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li class="complete">' + storedTasks[i].name + '</li>' + '<div class="close hidden"><i class="fa fa-times"></i></div>' + '</div>');
       } else {
-        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li>' + storedTasks[i].name + '</li>' + '<div class="close hidden">X</div>' + '</div>');
+        taskListEl.insertAdjacentHTML('beforeend', '<div  class="task">' + '<li>' + storedTasks[i].name + '</li>' + '<div class="close hidden"><i class="fa fa-times"></i></div>' + '</div>');
       }
     }
     this.addDeleteEvents();
     this.addClickEvents();
+  },
+  deleteAll : function () {
+    this.tasks = [];
+    this.showTasks();
   }
 };
 
@@ -151,16 +156,29 @@ document.addEventListener('DOMContentLoaded', function(){
   var allFilter = document.querySelector('#all');
   allFilter.addEventListener('click', function () {
     todoApp.showTasks();
+    document.querySelector('#active').parentElement.classList.remove('complete');
+    document.querySelector('#completed').parentElement.classList.remove('complete');
+    event.target.parentElement.classList.add('complete');
   });
 
   var activeFilter = document.querySelector('#active');
   activeFilter.addEventListener('click', function () {
     todoApp.showActive();
+    document.querySelector('#all').parentElement.classList.remove('complete');
+    document.querySelector('#completed').parentElement.classList.remove('complete');
+    event.target.parentElement.classList.add('complete');
   });
 
   var completedFilter = document.querySelector('#completed');
   completedFilter.addEventListener('click', function () {
     todoApp.showCompleted();
+    document.querySelector('#all').parentElement.classList.remove('complete');
+    document.querySelector('#active').parentElement.classList.remove('complete');
+    event.target.parentElement.classList.add('complete');
   });
 
+  var deleteAllFilter = document.querySelector('#delete');
+  deleteAllFilter.addEventListener('click', function () {
+    todoApp.deleteAll();
+  })
 });
