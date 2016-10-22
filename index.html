@@ -2,31 +2,38 @@
 <html>
   <head>
     <link  rel="stylesheet" type="text/css" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
     <title>Todo App</title>
   </head>
 
   <body>
+    <div class="flex-container">
+      <div id="todoApp">
+        <h1>Todo</h1>
+          <div>
+            <ul class="filters">
+              <li>
+                <a id="all" href="#">All</a>
+              </li>
+              <li>
+                <a id="active" href="#">Active</a>
+              </li>
+              <li>
+                <a id="completed" href="#">Completed</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <input class="new-task" placeholder="Add a new task.."/>
+            <button id="clear-btn">Clear Completed</button>
+          </div>
 
-    <div id="todoApp">
-      <h1>Todo</h1>
-        <div>
-          <ul class="filters">
-            <li>
-              <a id="all" href="#">All</a>
-              <a id="active" href="#">Active</a>
-              <a id="completed" href="#">Completed</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <input class="new-task" placeholder="Add a new task.."/>
-          <button id="clear-btn">Clear Completed</button>
-        </div>
+        <ul class="task-list">
 
-      <ul class="task-list">
-
-      </ul>
+        </ul>
+      </div>
     </div>
+
 
     <script src="./main.js"></script>
   </body>
