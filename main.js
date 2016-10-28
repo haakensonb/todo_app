@@ -138,7 +138,7 @@ function Task (name) {
 //document ready
 document.addEventListener('DOMContentLoaded', function(){
   //check if there were tasks from previus session and use them
-  if (storedTasks !== undefined){
+  if (localStorage.getItem('tasks')){
     todoApp.tasks = storedTasks;
     todoApp.showStored();
   }
