@@ -62,10 +62,10 @@ var todoApp = {
   addDeleteEvents: function () {
     var closeEl = document.querySelectorAll('.close');
     for (var i = 0; i < closeEl.length; i++){
-      closeEl[i].addEventListener('click', myDeleteEvent);
+      closeEl[i].addEventListener('click', myDeleteEvent(event));
     }
 
-    function myDeleteEvent () {
+    function myDeleteEvent (event) {
       var target = event.target;
       var parent = target.parentElement.parentElement;
       //access text of list item in front of .close div
