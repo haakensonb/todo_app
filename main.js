@@ -45,9 +45,9 @@ var todoApp = {
   addClickEvents: function () {
     var taskEl = document.querySelectorAll('.task');
     for (var i = 0; i < taskEl.length; i++){
-      taskEl[i].addEventListener('click', myClickEvent);
+      taskEl[i].addEventListener('click', myClickEvent(event));
     }
-    function myClickEvent () {
+    function myClickEvent (event) {
       //get text from li clicked
       var myTarget = event.target.innerHTML;
       //loop through tasks and if the name matches the li then toggleCompleted on that Task
