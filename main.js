@@ -45,9 +45,9 @@ var todoApp = {
   addClickEvents: function () {
     var taskEl = document.querySelectorAll('.task');
     for (var i = 0; i < taskEl.length; i++){
-      taskEl[i].addEventListener('click', myClickEvent(event));
+      taskEl[i].addEventListener('click', myClickEvent);
     }
-    function myClickEvent (event) {
+    function myClickEvent () {
       //get text from li clicked
       var myTarget = event.target.innerHTML;
       //loop through tasks and if the name matches the li then toggleCompleted on that Task
@@ -62,10 +62,10 @@ var todoApp = {
   addDeleteEvents: function () {
     var closeEl = document.querySelectorAll('.close');
     for (var i = 0; i < closeEl.length; i++){
-      closeEl[i].addEventListener('click', myDeleteEvent(event));
+      closeEl[i].addEventListener('click', myDeleteEvent);
     }
 
-    function myDeleteEvent (event) {
+    function myDeleteEvent () {
       var target = event.target;
       var parent = target.parentElement.parentElement;
       //access text of list item in front of .close div
@@ -184,5 +184,5 @@ document.addEventListener('DOMContentLoaded', function(){
   var deleteAllFilter = document.querySelector('#delete');
   deleteAllFilter.addEventListener('click', function () {
     todoApp.deleteAll();
-  })
+  });
 });
